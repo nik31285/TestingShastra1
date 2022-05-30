@@ -1,5 +1,7 @@
 package com.resonance.keywords;
 
+import java.io.IOException;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +14,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class UIkeywords {
 	public static WebDriver driver = null;
+	static PropertyFile pfile=new PropertyFile();
+	static String basePath="/src/main/resources/Envoirnment.properties";
 
 	/**
 	 * This method is used to open Browser
@@ -36,9 +40,16 @@ public class UIkeywords {
 	 * This method is used to open given url
 	 * 
 	 * @param URL in which enter URL
+	 * @throws IOException 
 	 */
-	public static void launchURL(String URL) {
+	public static void launchURL(String URL) throws IOException {
 		driver.get(URL);
+		String title=UIkeywords.getTitle();
+		System.out.println(title);
+		if(title.contains("Privacy error")) {
+			UIkeywords.click(pfile.getValue(basePath, "Advance_button"));
+			UIkeywords.click(pfile.getValue(basePath, "Proceed_Link"));
+		}
 	}
 
 	public static String getTitle() {
