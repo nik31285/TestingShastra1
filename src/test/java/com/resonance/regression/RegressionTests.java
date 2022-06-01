@@ -16,7 +16,7 @@ public class RegressionTests extends BaseTest {
 	UIkeywords keyword=new UIkeywords();
 	PropertyFile pfile=new PropertyFile();
 	String basePath="/src/main/resources/Envoirnment.properties";
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void verifyTitleOfHomePage() throws IOException {
 		String actualTitle=UIkeywords.getTitle();
 		Assert.assertTrue(actualTitle.contains("Online Shopping site in India"));
