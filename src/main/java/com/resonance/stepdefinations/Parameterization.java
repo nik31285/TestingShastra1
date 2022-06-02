@@ -1,7 +1,12 @@
 package com.resonance.stepdefinations;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 import org.testng.Assert;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -33,6 +38,27 @@ public class Parameterization {
 	}
 	@Given("I have a {string} space")
 	public void m4(String part) {
-		System.out.println(part);
+		System.out.println("String parameter is:"+part);
+	}
+	@Given("I have following rto code and city names:")
+	public void i_have_following_rto_code_and_city_names(DataTable dt) {
+		Map<String, String> map;
+		map=dt.asMap();
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			String key = entry.getKey();
+			String val = entry.getValue();
+			System.out.println(key+":\t"+val);
+		}
+	}
+	@Given("I have capital city names")
+	public void capitalCityNames(DataTable capcity) {
+		List<String> ls= capcity.asList();
+		for (String CityName : ls) {
+			System.out.println(CityName);	
+		}
+	}
+	@Given("I have {string} and {string}")
+	public void i_have_mh_and_maharashtra(String code, String name) {
+		System.out.println(code+"\t"+name);
 	}
 }
